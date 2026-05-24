@@ -56,7 +56,7 @@ Extensive hardware validation was performed against NIST Known-Answer Test (KAT)
 
 | Metric | Phase 1 (Single Core) | Phase 2 (Dual Core) |
 | :--- | :--- | :--- |
-| **Datapath** | Iterative (11 cycles/block) | Iterative (24-26 cycles/packet) |
+| **Datapath** | Iterative (11 cycles/block) | Iterative (24 cycles/packet) |
 | **Max Theoretical Throughput** | ~581 Mbps | ~532 Mbps (Combined) |
 | **UART Tested Throughput** | Interface Bound | ~37.85 KB/s @ 460800 baud |
 | **Cipher Modes** | ECB | ECB, CTR, CBC, CFB, OFB |
