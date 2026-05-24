@@ -2,7 +2,7 @@
 
 A high-throughput, highly scalable AES-128 cryptographic accelerator written in SystemVerilog. This project was developed by **Team Die Hard** as a competitive entry for the **Jordan Semiconductor Design Competition (JOSDC) 2025**. 
 
-The repository documents the engineering evolution of the core across two distinct competition phases. It transitions from a baseline single-core ECB accelerator to a highly optimized, dual-core architecture supporting dynamic load allocation, 5 distinct cipher modes, and on-the-fly multi-keying with zero pipeline stalling.
+The repository documents the engineering evolution of the core across two distinct competition phases. It transitions from a baseline single-core ECB accelerator to a highly optimized, dual-core architecture supporting dynamic load allocation, 5 distinct cipher modes, and on-the-fly multi-keying.
 
 ---
 
@@ -19,7 +19,7 @@ The repository documents the engineering evolution of the core across two distin
 * **Dual-Core Processing:** Two independent AES-128 cores operating concurrently.
 * **5 Cipher Modes Supported:** Fully implements **ECB, CTR, CBC, CFB, and OFB**. Modes can be switched dynamically on a per-packet basis.
 * **Adaptive Load Allocation ("Two-Level Brain"):** A hierarchical FSM automatically detects the workload. If two streams are active, cores run independently. If a single stream is active, the router shares the single stream across both cores (round-robin) to double per-stream throughput.
-* **On-the-Fly Rekeying:** Supports seamless mid-session key rotation. The Key Expansion unit calculates 11 round keys in 11 cycles, allowing the core to switch keys between packets without dropping data.
+* **On-the-Fly Rekeying:** Supports seamless mid-session key rotation, allowing the core to switch keys between packets without dropping data.
 * **Quad-Core Ready Protocol:** The custom 19-byte packet structure uses a 2-bit Stream ID, allowing the architecture to scale to 4 independent cores natively.
 
 ---
@@ -27,7 +27,7 @@ The repository documents the engineering evolution of the core across two distin
 ## 🏆 Architectural Evolution
 
 ### Phase 1: Baseline Architecture
-Phase 1 focuses on establishing a reliable datapath and a robust control infrastructure using a 1-stage iterative, hybrid-pipelined architecture.
+Phase 1 focuses on establishing a reliable datapath and a robust control infrastructure using a 1-stage iterative architecture.
 
 * **Throughput:** ~581 Mbps theoretical (11 cycles per block).
 * **Decoupled I/O Interface:** The UART communication module is strictly separated from the cryptographic core via asynchronous FIFOs, preventing the slow serial interface from bottlenecking the 50 MHz core logic.
@@ -41,9 +41,9 @@ Phase 1 focuses on establishing a reliable datapath and a robust control infrast
 ### Phase 2: Optimized Multi-Core Architecture
 Phase 2 represents a massive architectural overhaul designed for maximum throughput and operational flexibility, supported by the Python-based Crypto Tool GUI for seamless UART stream generation.
 
-* **Hardware Efficiency:** Achieves a highly optimized **24-to-26 cycle packet latency** (~480ns - 520ns per block).
+* **Hardware Efficiency:** Achieves a highly optimized **24 cycle packet latency** (~480ns per block).
 * **Logic Utilization:** Efficiently packed into ~78% of the MAX 10 LUTs, retaining all advanced routing and FSM logic.
-* **Throughput Capacity:** ~246 Mbps per core, delivering a combined theoretical throughput of **~492 - 532 Mbps** at 50 MHz.
+* **Throughput Capacity:** ~246 Mbps per core, delivering a combined theoretical throughput of **~532 Mbps** at 50 MHz.
 * **Crypto Tool GUI:** A custom software driver that parses any file format, applies PKCS#7 padding, and manages Sequence IDs for automatic packet reordering upon decryption.
 
 ![Phase 2 Architecture](Phase_2_Architecture.png)
@@ -61,4 +61,4 @@ Extensive hardware validation was performed against NIST Known-Answer Test (KAT)
 | **UART Tested Throughput** | Interface Bound | ~37.85 KB/s @ 460800 baud |
 | **Cipher Modes** | ECB | ECB, CTR, CBC, CFB, OFB |
 
-> **Note:** The Phase 2 physical throughput is strictly limited by the UART serial baud rate. The internal dual-core architecture possesses the headroom to saturate much faster interfaces (e.g., USB 3.0 FIFO, PCIe DMA) with zero RTL redesign.
+> **Note:** The physical throughput is strictly limited by the UART serial baud rate. The internal dual-core architecture possesses the headroom to saturate much faster interfaces (e.g., USB 3.0 FIFO, PCIe DMA) with zero RTL redesign.
