@@ -1,0 +1,183 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2020  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and any partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details, at
+# https://fpgasoftware.intel.com/eula.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+# Date created = 14:17:35  October 23, 2025
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		josdc_project_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX 10"
+set_global_assignment -name DEVICE 10M50DAF484C7G
+set_global_assignment -name TOP_LEVEL_ENTITY aes_accelerator_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:17:35  OCTOBER 23, 2025"
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (SystemVerilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "SYSTEMVERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb_aes_accelerator_system_new -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME counter_32_testbench -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id counter_32_testbench
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME counter_32_testbench -section_id counter_32_testbench
+set_global_assignment -name EDA_TEST_BENCH_NAME shifter_testbench -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id shifter_testbench
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME shifter_testbench -section_id shifter_testbench
+set_global_assignment -name EDA_TEST_BENCH_NAME state_maker_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id state_maker_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME state_maker_tb -section_id state_maker_tb
+set_global_assignment -name SEARCH_PATH "c:\\users\\user\\desktop\\josdc\\modules"
+set_global_assignment -name SEARCH_PATH "c:\\users\\user\\desktop\\josdc"
+set_global_assignment -name EDA_USER_COMPILED_SIMULATION_LIBRARY_DIRECTORY "C:\\Users\\user\\Desktop\\josdc\\testbenches" -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME aes_sbox_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id aes_sbox_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME aes_sbox_tb -section_id aes_sbox_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME AES_TopModule_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id AES_TopModule_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME AES_TopModule_tb -section_id AES_TopModule_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME mix_columns_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id mix_columns_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME mix_columns_tb -section_id mix_columns_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_key_expansion_bit_level -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_key_expansion_bit_level
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_key_expansion_bit_level -section_id tb_key_expansion_bit_level
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_AES_round -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_AES_round
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_AES_round -section_id tb_AES_round
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_data_maker -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_data_maker
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_data_maker -section_id tb_data_maker
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_aes_round_new -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_aes_round_new
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_aes_round_new -section_id tb_aes_round_new
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_aes_inv_round -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_aes_inv_round
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_aes_inv_round -section_id tb_aes_inv_round
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_inv_mix_columns -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_inv_mix_columns
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_inv_mix_columns -section_id tb_inv_mix_columns
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_aes128_encrypt_pipeline -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_aes128_encrypt_pipeline
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_aes128_encrypt_pipeline -section_id tb_aes128_encrypt_pipeline
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_aes128_decrypt_pipeline -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_aes128_decrypt_pipeline
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_aes128_decrypt_pipeline -section_id tb_aes128_decrypt_pipeline
+set_global_assignment -name VERILOG_FILE tb_queue.v
+set_global_assignment -name VERILOG_FILE queue.v
+set_global_assignment -name SYSTEMVERILOG_FILE inv_AES_first_round.sv
+set_global_assignment -name SYSTEMVERILOG_FILE key_expansion.sv
+set_global_assignment -name SYSTEMVERILOG_FILE inv_shifter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE inv_sbox.sv
+set_global_assignment -name SYSTEMVERILOG_FILE shifter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Addroundkey.sv
+set_global_assignment -name SYSTEMVERILOG_FILE AES_round.sv
+set_global_assignment -name SYSTEMVERILOG_FILE data_maker.sv
+set_global_assignment -name SYSTEMVERILOG_FILE system_state_maker.sv
+set_global_assignment -name SYSTEMVERILOG_FILE state_maker_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE shifter_testbench.sv
+set_global_assignment -name VERILOG_FILE counter_32_testbench.v
+set_global_assignment -name VERILOG_FILE counter_32.v
+set_global_assignment -name SYSTEMVERILOG_FILE aes_sbox.sv
+set_global_assignment -name SYSTEMVERILOG_FILE aes_sbox_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE demux.sv
+set_global_assignment -name SYSTEMVERILOG_FILE demux_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE mix_columns.sv
+set_global_assignment -name SYSTEMVERILOG_FILE mix_columns_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_key_expansion_bit_level.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_AES_round.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_data_maker.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_aes_round_new.sv
+set_global_assignment -name SYSTEMVERILOG_FILE inv_AES_round.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_aes_inv_round.sv
+set_global_assignment -name SYSTEMVERILOG_FILE inv_mix_columns.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_inv_mix_columns.sv
+set_global_assignment -name SYSTEMVERILOG_FILE AES_last_round.sv
+set_global_assignment -name SYSTEMVERILOG_FILE aes128_encrypt_pipeline.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_aes128_encrypt_pipeline.sv
+set_global_assignment -name SYSTEMVERILOG_FILE aes128_decrypt_pipeline.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_aes128_decrypt_pipeline.sv
+set_global_assignment -name SYSTEMVERILOG_FILE key_expansion_fsm.sv
+set_global_assignment -name SYSTEMVERILOG_FILE async_fifo.sv
+set_global_assignment -name SYSTEMVERILOG_FILE aes_fsm.sv
+set_global_assignment -name SYSTEMVERILOG_FILE main_fsm.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_key_expansion_fsm.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_key_expansion_fsm -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_key_expansion_fsm
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_key_expansion_fsm -section_id tb_key_expansion_fsm
+set_global_assignment -name SYSTEMVERILOG_FILE tb_aes_fsm.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_aes_fsm -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_aes_fsm
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_aes_fsm -section_id tb_aes_fsm
+set_global_assignment -name SYSTEMVERILOG_FILE aes_accelerator_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_aes_accelerator_system.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_aes_accelerator_system -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_aes_accelerator_system
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_aes_accelerator_system -section_id tb_aes_accelerator_system
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name SYSTEMVERILOG_FILE top_uart.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tb_aes_accelerator_system_new.sv
+set_global_assignment -name EDA_TEST_BENCH_FILE counter_32_testbench.v -section_id counter_32_testbench
+set_global_assignment -name EDA_TEST_BENCH_FILE shifter_testbench.sv -section_id shifter_testbench
+set_global_assignment -name EDA_TEST_BENCH_FILE state_maker_tb.sv -section_id state_maker_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE aes_sbox_tb.sv -section_id aes_sbox_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE AES_TopModule_tb.sv -section_id AES_TopModule_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE mix_columns_tb.sv -section_id mix_columns_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_key_expansion_bit_level.sv -section_id tb_key_expansion_bit_level
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_AES_round.sv -section_id tb_AES_round
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_data_maker.sv -section_id tb_data_maker
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_aes_round_new.sv -section_id tb_aes_round_new
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_aes_inv_round.sv -section_id tb_aes_inv_round
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_inv_mix_columns.sv -section_id tb_inv_mix_columns
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_aes128_encrypt_pipeline.sv -section_id tb_aes128_encrypt_pipeline
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_aes128_decrypt_pipeline.sv -section_id tb_aes128_decrypt_pipeline
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_key_expansion_fsm.sv -section_id tb_key_expansion_fsm
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_aes_fsm.sv -section_id tb_aes_fsm
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_aes_accelerator_system.sv -section_id tb_aes_accelerator_system
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_aes_accelerator_system_new -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_aes_accelerator_system_new
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_aes_accelerator_system_new -section_id tb_aes_accelerator_system_new
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_aes_accelerator_system_new.sv -section_id tb_aes_accelerator_system_new
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
