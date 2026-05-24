@@ -1,57 +1,64 @@
 # 🔒 Multi-Core AES-128 Hardware Accelerator (JOSDC 2025)
 
-A high-throughput, highly scalable AES-128 cryptographic accelerator written in SystemVerilog. This project was developed as a competitive entry for the **Jordan Open Source Design Competition (JOSDC) 2025**. 
+A high-throughput, highly scalable AES-128 cryptographic accelerator written in SystemVerilog. This project was developed by **Team Die Hard** as a competitive entry for the **Jordan Semiconductor Design Competition (JOSDC) 2025**. 
 
-The repository documents the engineering evolution of the core across two distinct competition phases, transitioning from a baseline single-core ECB accelerator to a highly optimized, dual-core architecture supporting dynamic load allocation, multiple cipher modes, and on-the-fly multi-keying.
+The repository documents the engineering evolution of the core across two distinct competition phases. It transitions from a baseline single-core ECB accelerator to a highly optimized, dual-core architecture supporting dynamic load allocation, 5 distinct cipher modes, and on-the-fly multi-keying with zero pipeline stalling.
 
 ---
 
 ## 🛠️ Hardware & Development Environment
-* **Target FPGA:** Intel MAX 10 (`10M50DAF484C7G`)
+* **Target FPGA:** Intel MAX 10 (`10M50DAF484C7G` / Terasic DE-10 Lite)
 * **EDA Toolchain:** Intel Quartus Prime 20.1
+* **System Clock:** 50 MHz
 * **Language:** SystemVerilog
-* **Software Interface:** Custom PC companion software (Phase 2)
+* **Software Interface:** Custom PC companion software ("Crypto Tool")
 
 ---
 
-## 🏆 Project Evolution & Architecture
+## 🚀 Key Features (Phase 2)
+* **Dual-Core Processing:** Two independent AES-128 cores operating concurrently.
+* **5 Cipher Modes Supported:** Fully implements **ECB, CTR, CBC, CFB, and OFB**. Modes can be switched dynamically on a per-packet basis.
+* **Adaptive Load Allocation ("Two-Level Brain"):** A hierarchical FSM automatically detects the workload. If two streams are active, cores run independently. If a single stream is active, the router shares the single stream across both cores (round-robin) to double per-stream throughput.
+* **On-the-Fly Rekeying:** Supports seamless mid-session key rotation. The Key Expansion unit calculates 11 round keys in 11 cycles, allowing the core to switch keys between packets without dropping data.
+* **Quad-Core Ready Protocol:** The custom 19-byte packet structure uses a 2-bit Stream ID, allowing the architecture to scale to 4 independent cores natively.
 
-### Phase 1: Baseline Architecture (Single-Core ECB)
-Phase 1 focuses on establishing a reliable datapath and a robust control infrastructure. It implements standard AES-128 in Electronic Codebook (ECB) mode.
+---
 
-* **Custom Internal Packet System:** The core operates using a tailor-made packet structure. To successfully interface with this IP, developers **must** adhere to this packet protocol. (Detailed packet mapping is available in the Phase 1 Technical Report).
-* **Decoupled I/O Interface:** The UART communication module is strictly separated from the cryptographic core via asynchronous FIFOs. This modularity allows the UART to be easily swapped out for higher-speed communication protocols (like PCIe or AXI4) without altering the core logic.
+## 🏆 Architectural Evolution
 
-![Phase 1 Architecture](Phase_1_Architecture.jpg)
-📄 **Documentation:** [Read the Phase 1 Technical Report](JOSDC_TECHNICAL_REPORT_1.pdf)
+### Phase 1: Baseline Architecture
+Phase 1 focuses on establishing a reliable datapath and a robust control infrastructure using a 1-stage iterative, hybrid-pipelined architecture.
+
+* **Throughput:** ~581 Mbps theoretical (11 cycles per block).
+* **Decoupled I/O Interface:** The UART communication module is strictly separated from the cryptographic core via asynchronous FIFOs, preventing the slow serial interface from bottlenecking the 50 MHz core logic.
+* **Custom Packet System:** Developed a fixed 19-byte packet protocol (1-byte Header, 2-byte Sequence ID, 16-byte Payload) for deterministic parsing.
+
+![Phase 1 Architecture](Phase_1_Architecture.png)
+📄 **Documentation:** [Read the Phase 1 Technical Report](JOSDC%20TECHNICAL%20REPORT%201.pdf)
 
 ---
 
 ### Phase 2: Optimized Multi-Core Architecture
-Phase 2 represents a massive architectural overhaul designed for maximum throughput and operational flexibility, supported by a custom software GUI for seamless UART stream generation.
+Phase 2 represents a massive architectural overhaul designed for maximum throughput and operational flexibility, supported by the Python-based Crypto Tool GUI for seamless UART stream generation.
 
-* **Dual-Core Processing:** Features two independent AES-128 cores operating concurrently. 
-* **Dynamic Load Allocation:** The hardware router dynamically allocates data packets across available cores. You can mix and match data streams requiring different operation modes (Encryption vs. Decryption) simultaneously.
-* **Comprehensive Cipher Modes:** Fully supports ECB, CBC, OFB, and CTR modes.
-* **On-the-Fly Multi-Keying:** The design supports two entirely separate data streams (scalable to four), each capable of maintaining and switching its own cryptographic keys dynamically without stalling the pipeline.
-* **Scalability vs. Hardware Limits:** The updated Phase 2 packet system was engineered to support a **Quad-Core** configuration. However, the physical implementation was bottlenecked by the logic cell/BRAM limits of the Intel MAX 10 (`10M50`) board, restricting the physical instantiation to Dual-Core.
+* **Hardware Efficiency:** Achieves a highly optimized **24-to-26 cycle packet latency** (~480ns - 520ns per block).
+* **Logic Utilization:** Efficiently packed into ~78% of the MAX 10 LUTs, retaining all advanced routing and FSM logic.
+* **Throughput Capacity:** ~246 Mbps per core, delivering a combined theoretical throughput of **~492 - 532 Mbps** at 50 MHz.
+* **Crypto Tool GUI:** A custom software driver that parses any file format, applies PKCS#7 padding, and manages Sequence IDs for automatic packet reordering upon decryption.
 
-![Phase 2 Architecture](Phase_2_Architecture.jpg)
-📄 **Documentation:** [Read the Phase 2 Technical Report](phase_2_technical_report_final.pdf)
-
----
-
-## 📊 Performance Metrics
-
-* **Core Throughput:** **> 500 Mbps** *(Note: This metric reflects the internal datapath capability of the cryptographic cores, excluding external UART interface bottlenecks).*
-* **Stream Capacity:** 2 Concurrent Independent Streams (Protocol supports up to 4).
+![Phase 2 Architecture](Phase_2_Architecture.png)
+📄 **Documentation:** [Read the Phase 2 Technical Report](phase_2_technical_report%20final.pdf)
 
 ---
 
-## 🚀 Getting Started
+## 📊 Performance & Benchmarks
+Extensive hardware validation was performed against NIST Known-Answer Test (KAT) vectors. Across 50 individual sequence verifications covering all 5 modes, the core achieved a **100% pass rate** with zero bit errors.
 
-Because this IP relies on a highly specialized internal packet structure rather than standard memory-mapped AXI registers, standard terminal inputs will not work. 
+| Metric | Phase 1 (Single Core) | Phase 2 (Dual Core) |
+| :--- | :--- | :--- |
+| **Datapath** | Iterative (11 cycles/block) | Iterative (24-26 cycles/packet) |
+| **Max Theoretical Throughput** | ~581 Mbps | ~532 Mbps (Combined) |
+| **UART Tested Throughput** | Interface Bound | ~37.85 KB/s @ 460800 baud |
+| **Cipher Modes** | ECB | ECB, CTR, CBC, CFB, OFB |
 
-1. **Review the Technical Reports:** Understand the header, payload, and tail structure of the data packets.
-2. **Phase 1 Execution:** Data must be packaged manually or via script according to the Phase 1 report before being sent over UART.
-3. **Phase 2 Execution:** Utilize the included custom PC software to generate the correct packet structures, select cipher modes, and stream data to the MAX 10 board.
+> **Note:** The Phase 2 physical throughput is strictly limited by the UART serial baud rate. The internal dual-core architecture possesses the headroom to saturate much faster interfaces (e.g., USB 3.0 FIFO, PCIe DMA) with zero RTL redesign.
