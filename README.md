@@ -34,7 +34,7 @@ Phase 1 focuses on establishing a reliable datapath and a robust control infrast
 * **Custom Packet System:** Developed a fixed 19-byte packet protocol (1-byte Header, 2-byte Sequence ID, 16-byte Payload) for deterministic parsing.
 
 ![Phase 1 Architecture](phase_1_BaseLine/phase_1_Architecture.jpg)
-📄 **Documentation:** [Read the Phase 1 Technical Report](phase1_baseline/phase_1_technical_report.pdf)
+📄 **Documentation:** [Read the Phase 1 Technical Report](phase_1_BaseLine/phase_1_technical_report.pdf)
 
 ---
 
@@ -46,8 +46,8 @@ Phase 2 represents a massive architectural overhaul designed for maximum through
 * **Throughput Capacity:** ~246 Mbps per core, delivering a combined theoretical throughput of **~532 Mbps** at 50 MHz.
 * **Crypto Tool GUI:** A custom software driver that parses any file format, applies PKCS#7 padding, and manages Sequence IDs for automatic packet reordering upon decryption.
 
-![Phase 2 Architecture](phase2_optimized/Phase_2_Architecture.jpg)
-📄 **Documentation:** [Read the Phase 2 Technical Report](phase2_optimized/phase_2_technical_report.pdf)
+![Phase 2 Architecture](phase_2_Optimized/phase_2_Architecture.jpg)
+📄 **Documentation:** [Read the Phase 2 Technical Report](phase_2_Optimized/phase_2_technical_report.pdf)
 
 ---
 
