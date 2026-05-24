@@ -33,8 +33,8 @@ Phase 1 focuses on establishing a reliable datapath and a robust control infrast
 * **Decoupled I/O Interface:** The UART communication module is strictly separated from the cryptographic core via asynchronous FIFOs, preventing the slow serial interface from bottlenecking the 50 MHz core logic.
 * **Custom Packet System:** Developed a fixed 19-byte packet protocol (1-byte Header, 2-byte Sequence ID, 16-byte Payload) for deterministic parsing.
 
-![Phase 1 Architecture](Phase_1_Architecture.png)
-📄 **Documentation:** [Read the Phase 1 Technical Report](JOSDC%20TECHNICAL%20REPORT%201.pdf)
+![Phase 1 Architecture](phase1_baseline/Phase_1_Architecture.png)
+📄 **Documentation:** [Read the Phase 1 Technical Report](phase1_baseline/phase_1_technical_report.pdf)
 
 ---
 
@@ -46,8 +46,8 @@ Phase 2 represents a massive architectural overhaul designed for maximum through
 * **Throughput Capacity:** ~246 Mbps per core, delivering a combined theoretical throughput of **~532 Mbps** at 50 MHz.
 * **Crypto Tool GUI:** A custom software driver that parses any file format, applies PKCS#7 padding, and manages Sequence IDs for automatic packet reordering upon decryption.
 
-![Phase 2 Architecture](Phase_2_Architecture.png)
-📄 **Documentation:** [Read the Phase 2 Technical Report](phase_2_technical_report%20final.pdf)
+![Phase 2 Architecture](phase2_optimized/Phase_2_Architecture.png)
+📄 **Documentation:** [Read the Phase 2 Technical Report](phase2_optimized/phase_2_technical_report.pdf)
 
 ---
 
